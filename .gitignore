@@ -16,3 +16,10 @@ env/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Sensitive keys and tokens
+*token*.txt
+*Token*.txt
+*.key
+*.pem
+

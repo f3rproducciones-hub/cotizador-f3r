@@ -1,6 +1,14 @@
 import glob, openpyxl, json, os
 
-f = [x for x in glob.glob('*Family Day ENAP FINAL.xlsx') if not x.startswith('~$')][0]
+candidates = (
+    glob.glob('*Family Day ENAP FINAL.xlsx') + 
+    glob.glob('docs/*Family Day ENAP FINAL.xlsx') + 
+    glob.glob('docs/*/*Family Day ENAP FINAL.xlsx')
+)
+valid_candidates = [x for x in candidates if not os.path.basename(x).startswith('~$')]
+if not valid_candidates:
+    raise FileNotFoundError("No se encontró el archivo 'Family Day ENAP FINAL.xlsx' ni en la raíz ni en docs/")
+f = valid_candidates[0]
 wb = openpyxl.load_workbook(f, data_only=True)
 ws = wb.active
 
