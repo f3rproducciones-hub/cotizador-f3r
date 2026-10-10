@@ -146,6 +146,90 @@ st.markdown("""
         margin-bottom: 8px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     }
+
+    /* ============================================================== */
+    /* RESPONSIVIDAD PARA CELULARES Y TABLETS (PANTALLAS MÓVILES)    */
+    /* ============================================================== */
+    @media (max-width: 768px) {
+        /* Aprovechar al máximo el ancho de pantalla en celular */
+        .main .block-container {
+            padding-top: 1rem !important;
+            padding-bottom: 2.5rem !important;
+            padding-left: 0.6rem !important;
+            padding-right: 0.6rem !important;
+        }
+
+        /* Títulos principales escalables en celular */
+        .gold-title {
+            font-size: 1.3rem !important;
+            letter-spacing: -0.2px !important;
+            margin-bottom: 8px !important;
+        }
+
+        /* Tarjetas KPI compactas para evitar desbordes */
+        .f3r-card {
+            padding: 12px 14px !important;
+            margin-bottom: 8px !important;
+            border-radius: 10px !important;
+        }
+
+        .kpi-title {
+            font-size: 0.72rem !important;
+            letter-spacing: 0.4px !important;
+        }
+
+        .kpi-value {
+            font-size: 1.35rem !important;
+            margin-top: 2px !important;
+            word-break: break-word;
+        }
+
+        .kpi-sub {
+            font-size: 0.72rem !important;
+            margin-top: 2px !important;
+        }
+
+        /* Botones táctiles de tamaño óptimo para dedo en celular */
+        div.stButton > button, div.stDownloadButton > button {
+            width: 100% !important;
+            min-height: 46px !important;
+            padding: 10px 14px !important;
+            font-size: 0.92rem !important;
+            margin-bottom: 6px !important;
+        }
+
+        /* Pestañas con desplazamiento táctil horizontal suave */
+        div[data-baseweb="tab-list"] {
+            gap: 4px !important;
+            overflow-x: auto !important;
+            flex-wrap: nowrap !important;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px !important;
+        }
+        button[data-baseweb="tab"] {
+            font-size: 0.82rem !important;
+            padding: 8px 10px !important;
+            white-space: nowrap !important;
+        }
+
+        /* Tablas y editores con scroll horizontal fluido sin descuadrar la pantalla */
+        div[data-testid="stDataEditor"], div[data-testid="stDataFrame"], div[data-testid="stTable"] {
+            width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 8px !important;
+        }
+
+        /* Evitar zoom automático forzado en Safari de iPhone */
+        input, select, textarea, div[data-baseweb="input"] input, div[data-baseweb="select"] {
+            font-size: 16px !important;
+        }
+
+        /* Botón de menú hamburguesa de la barra lateral en celular */
+        button[data-testid="stSidebarCollapseButton"] {
+            color: #D4AF37 !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -154,18 +238,30 @@ def load_db():
     if not os.path.exists(DB_FILE):
         return {"events": []}
     with open(DB_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+        
+    # Asegurar que cada evento posea un identificador único persistente (UUID)
+    updated = False
+    for idx, ev in enumerate(data.get("events", [])):
+        if "uuid" not in ev:
+            ev["uuid"] = f"EVT-{ev.get('id', 'HIST')}-{idx+1}"
+            updated = True
+    if updated:
+        with open(DB_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+            
+    return data
 
 def save_db(data):
     with open(DB_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-def get_cot_code(event_dict):
+def get_cot_code(event_dict, existing_events=None):
     """
     Genera el código de cotización oficial F3R:
     - V1 si es la primera versión no editada, V2 en la segunda, V3 en la tercera, etc.
     - Seguido de '-' y fecha MMDD (2 dígitos de mes + 2 dígitos de día)
-    Ejemplo: V1-1009, V2-1009, V1-1010
+    - Si ya existe otra cotización en la misma fecha para otro cliente, le asigna un consecutivo (-02, -03)
     """
     ver = event_dict.get("version", 1)
     try:
@@ -180,7 +276,18 @@ def get_cot_code(event_dict):
     except Exception:
         mmdd = datetime.now().strftime("%m%d")
         
-    return f"V{ver_int}-{mmdd}"
+    base_code = f"V{ver_int}-{mmdd}"
+    
+    if existing_events:
+        cur_uuid = event_dict.get("uuid")
+        colliding = [
+            e for e in existing_events 
+            if e.get("uuid") != cur_uuid and e.get("id", "").startswith(base_code)
+        ]
+        if colliding:
+            return f"{base_code}-{len(colliding) + 1:02d}"
+            
+    return base_code
 
 db = load_db()
 events = db.get("events", [])
@@ -227,7 +334,11 @@ st.sidebar.caption("Carpetas organizadas por cliente y tipo:")
 col_sb1, col_sb2 = st.sidebar.columns(2)
 with col_sb1:
     if st.button("📂 Abrir F3R", use_container_width=True, help="Abrir carpeta raíz F3R_ARCHIVOS en Windows Explorer"):
-        open_folder_in_windows()
+        ok, msg = open_folder_in_windows()
+        if ok:
+            st.sidebar.success(msg)
+        else:
+            st.sidebar.info(msg)
 with col_sb2:
     if st.button("🔄 Sincronizar", use_container_width=True, help="Generar y actualizar todos los archivos en sus carpetas"):
         sync_all_crm_events(events)
@@ -266,6 +377,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
 
         def crear_cotizacion_blanca():
             nueva = {
+                "uuid": f"EVT-{datetime.now().strftime('%Y%m%d%H%M%S')}",
                 "client": "",
                 "nit": "",
                 "event_name": "",
@@ -296,7 +408,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                 "items": [],
                 "actual_costs": []
             }
-            nueva['id'] = get_cot_code(nueva)
+            nueva['id'] = get_cot_code(nueva, events)
             return nueva
 
         # Botón directo y muy visible para iniciar en blanco desde cero
@@ -346,9 +458,10 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                 match = [e for e in events if "ENAP" in e.get("client", "")]
                 if match:
                     clon = json.loads(json.dumps(match[0]))
+                    clon['uuid'] = f"EVT-{datetime.now().strftime('%Y%m%d%H%M%S')}"
                     clon['created_at'] = datetime.now().strftime("%Y-%m-%d")
                     clon['version'] = 1
-                    clon['id'] = get_cot_code(clon)
+                    clon['id'] = get_cot_code(clon, events)
                     clon['client'] = "Nuevo Cliente Corporativo"
                     clon['event_name'] = "Evento Empresarial / Family Day"
                     st.session_state.active_cot = clon
@@ -375,7 +488,8 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
             st.session_state.current_eid = st.session_state.active_cot["id"]
 
         cur = st.session_state.active_cot
-        cur["id"] = get_cot_code(cur)
+        if not cur.get("id"):
+            cur["id"] = get_cot_code(cur, events)
         seed = st.session_state.cot_form_seed
 
         st.markdown("<hr style='border:none; border-top:1px solid #E2E8F0; margin:16px 0;'>", unsafe_allow_html=True)
@@ -587,23 +701,25 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                     st.error("Por favor completa los campos de Cliente y Nombre del Evento antes de guardar.")
                 else:
                     found_idx = None
-                    orig_id = st.session_state.get("current_eid")
+                    cur_uuid = cur.get("uuid")
                     for idx, ev in enumerate(db["events"]):
-                        if ev["id"] == orig_id or ev["id"] == cur.get("id"):
+                        if cur_uuid and ev.get("uuid") == cur_uuid:
                             found_idx = idx
                             break
                     if found_idx is not None:
                         # Ha sido editada: se incrementa versión (V1 -> V2, V2 -> V3)
                         prev_ver = db["events"][found_idx].get("version", 1)
                         cur["version"] = prev_ver + 1
-                        cur["id"] = get_cot_code(cur)
+                        cur["id"] = get_cot_code(cur, db["events"])
                         cur["display_id"] = cur["id"]
                         db["events"][found_idx] = cur
                         st.session_state.current_eid = cur["id"]
                         msg = f"🎉 ¡Cotización actualizada a nueva versión {cur['id']} y guardada en el CRM!"
                     else:
                         cur["version"] = 1
-                        cur["id"] = get_cot_code(cur)
+                        if not cur.get("uuid"):
+                            cur["uuid"] = f"EVT-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+                        cur["id"] = get_cot_code(cur, db["events"])
                         cur["display_id"] = cur["id"]
                         db["events"].append(cur)
                         st.session_state.current_eid = cur["id"]
@@ -708,10 +824,20 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                     )
                     
                 if st.button("📂 Abrir Carpeta de este Cliente en Windows", use_container_width=True, key="btn_open_client_pdf"):
-                    open_folder_in_windows(saved_paths["client_folder_pdf"])
+                    opened, msg = open_folder_in_windows(saved_paths["client_folder_pdf"])
+                    if opened:
+                        st.toast(msg, icon="📂")
+                    else:
+                        st.info(msg)
                 
             with p_col2:
                 st.markdown("##### Visualizador del Documento PDF Oficial")
+                st.markdown(
+                    '<div class="mobile-only" style="padding: 10px 14px; background: rgba(212, 175, 55, 0.12); border: 1px solid #d4af37; border-radius: 8px; margin-bottom: 12px; font-size: 0.88rem; color: #78350f; text-align: center;">'
+                    '📱 <b>¿Estás en tu celular?</b> Los visores móviles bloquean ventanas embebidas. Usa el botón superior <b>"📥 Descargar PDF"</b> para abrirlo directamente en tu teléfono.'
+                    '</div>',
+                    unsafe_allow_html=True
+                )
                 pdf_frame = f'<iframe src="data:application/pdf;base64,{pdf_b64}" width="100%" height="620" type="application/pdf" style="border: 2px solid #d4af37; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.5);"></iframe>'
                 st.markdown(pdf_frame, unsafe_allow_html=True)
 
@@ -802,9 +928,11 @@ elif modulo == "💰 2. Matriz de Utilidad (Pre vs Real)":
                     paper_bgcolor='#FFFFFF',
                     plot_bgcolor='#FFFFFF',
                     font=dict(color="#0F172A"),
-                    margin=dict(l=10, r=10, t=35, b=10)
+                    legend=dict(orientation="h", yanchor="bottom", y=-0.35, xanchor="center", x=0.5),
+                    margin=dict(l=10, r=10, t=35, b=40),
+                    autosize=True
                 )
-                st.plotly_chart(fig_comp, use_container_width=True)
+                st.plotly_chart(fig_comp, use_container_width=True, config={'displayModeBar': False, 'responsive': True})
 
             with g_col2:
                 st.subheader("Semáforo de Desviación")
@@ -821,8 +949,15 @@ elif modulo == "💰 2. Matriz de Utilidad (Pre vs Real)":
                         cat_map[c['categoria']] = cat_map.get(c['categoria'], 0) + c['costo_real']
                     df_pie = pd.DataFrame(list(cat_map.items()), columns=["Rubro", "Monto"])
                     fig_p = px.pie(df_pie, names="Rubro", values="Monto", hole=0.45, title="Distribución de Facturas Pagadas")
-                    fig_p.update_layout(height=260, paper_bgcolor='#FFFFFF', font=dict(color="#0F172A"), margin=dict(l=10, r=10, t=30, b=10))
-                    st.plotly_chart(fig_p, use_container_width=True)
+                    fig_p.update_layout(
+                        height=280,
+                        paper_bgcolor='#FFFFFF',
+                        font=dict(color="#0F172A"),
+                        legend=dict(orientation="h", yanchor="top", y=-0.1, xanchor="center", x=0.5),
+                        margin=dict(l=10, r=10, t=30, b=40),
+                        autosize=True
+                    )
+                    st.plotly_chart(fig_p, use_container_width=True, config={'displayModeBar': False, 'responsive': True})
 
         with tab_gastos:
             st.subheader("Carga de Facturas y Egresos Operativos")
@@ -967,8 +1102,14 @@ elif modulo == "📊 4. Dashboard Ejecutivo & Funnel":
         df_f = pd.DataFrame(datos_etapas)
         if not df_f.empty:
             fig_fun = px.funnel(df_f, x='Monto', y='Etapa', title="Volumen Financiero por Fase Comercial", color_discrete_sequence=['#d4af37'])
-            fig_fun.update_layout(height=340, paper_bgcolor='#FFFFFF', font=dict(color="#0F172A"), margin=dict(l=10, r=10, t=30, b=10))
-            st.plotly_chart(fig_fun, use_container_width=True)
+            fig_fun.update_layout(
+                height=340,
+                paper_bgcolor='#FFFFFF',
+                font=dict(color="#0F172A"),
+                margin=dict(l=10, r=10, t=30, b=10),
+                autosize=True
+            )
+            st.plotly_chart(fig_fun, use_container_width=True, config={'displayModeBar': False, 'responsive': True})
 
     with col_f2:
         st.subheader("Facturación por Rubro Operativo")
@@ -979,8 +1120,15 @@ elif modulo == "📊 4. Dashboard Ejecutivo & Funnel":
                 cat_map[cat] = cat_map.get(cat, 0) + (it['cantidad'] * it['precio_unit'])
         df_cp = pd.DataFrame(list(cat_map.items()), columns=["Categoría", "Venta Total"])
         fig_pie_cat = px.pie(df_cp, names="Categoría", values="Venta Total", hole=0.45, color_discrete_sequence=px.colors.sequential.YlOrBr)
-        fig_pie_cat.update_layout(height=340, paper_bgcolor='#FFFFFF', font=dict(color="#0F172A"), margin=dict(l=10, r=10, t=30, b=10))
-        st.plotly_chart(fig_pie_cat, use_container_width=True)
+        fig_pie_cat.update_layout(
+            height=340,
+            paper_bgcolor='#FFFFFF',
+            font=dict(color="#0F172A"),
+            legend=dict(orientation="h", yanchor="top", y=-0.1, xanchor="center", x=0.5),
+            margin=dict(l=10, r=10, t=30, b=40),
+            autosize=True
+        )
+        st.plotly_chart(fig_pie_cat, use_container_width=True, config={'displayModeBar': False, 'responsive': True})
 
 # ==============================================================================
 # ==============================================================================
@@ -1041,7 +1189,11 @@ elif modulo == "📁 5. Base de Datos & Archivos F3R (Excel/PDF)":
     act1, act2, act3, act4 = st.columns([1.2, 1.2, 1.2, 1])
     with act1:
         if st.button("📂 Abrir Carpeta F3R en Windows", type="primary", use_container_width=True):
-            open_folder_in_windows()
+            opened, msg = open_folder_in_windows()
+            if opened:
+                st.toast(msg, icon="📂")
+            else:
+                st.info(msg)
     with act2:
         if st.button("🔄 Sincronizar Todos los Archivos", use_container_width=True):
             sync_all_crm_events(events)

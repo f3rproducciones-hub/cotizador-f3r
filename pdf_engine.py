@@ -88,15 +88,46 @@ class F3RQuotationPDF(FPDF):
         self.set_margins(12, 10, 12)
         self.set_auto_page_break(auto=True, margin=16)
 
-        # Cargar fuentes Unicode del sistema
-        font_dir = "C:/Windows/Fonts"
-        if os.path.exists(os.path.join(font_dir, "arial.ttf")):
-            self.add_font("ArialUni", "", os.path.join(font_dir, "arial.ttf"))
-            self.add_font("ArialUni", "B", os.path.join(font_dir, "arialbd.ttf"))
-            self.add_font("ArialUni", "I", os.path.join(font_dir, "ariali.ttf"))
-            self.main_font = "ArialUni"
-        else:
+        # Cargar fuentes Unicode del sistema de forma multiplataforma
+        font_loaded = False
+        possible_fonts = [
+            ("C:/Windows/Fonts/arial.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/ariali.ttf"),
+            ("C:/Windows/Fonts/calibri.ttf", "C:/Windows/Fonts/calibrib.ttf", "C:/Windows/Fonts/calibrii.ttf"),
+            ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf"),
+            ("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", "/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf")
+        ]
+        for reg, bld, itl in possible_fonts:
+            if os.path.exists(reg):
+                try:
+                    self.add_font("ArialUni", "", reg)
+                    self.add_font("ArialUni", "B", bld if os.path.exists(bld) else reg)
+                    self.add_font("ArialUni", "I", itl if os.path.exists(itl) else reg)
+                    self.main_font = "ArialUni"
+                    font_loaded = True
+                    break
+                except Exception:
+                    continue
+
+        if not font_loaded:
             self.main_font = "Helvetica"
+
+    def safe_text(self, val):
+        if val is None:
+            return ""
+        s = str(val)
+        if self.main_font == "Helvetica":
+            replacements = {
+                '—': '-', '–': '-', '“': '"', '”': '"', '‘': "'", '’': "'",
+                '•': '-', '✓': 'OK', '✔': 'OK', '★': '*', '☆': '*',
+                '…': '...', '™': 'TM', '©': '(c)', '®': '(R)', '°': 'o'
+            }
+            for k, v in replacements.items():
+                s = s.replace(k, v)
+            try:
+                return s.encode('latin-1', 'replace').decode('latin-1')
+            except Exception:
+                return "".join(c for c in s if ord(c) < 256)
+        return s
 
     def header(self):
         # 1. Franja Fondo Superior Negro Ónix Corporativo F3R (#000000 / #0A0A0A)

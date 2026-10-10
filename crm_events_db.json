@@ -346,7 +346,8 @@
           "factura_soporte": "GAS-VAR"
         }
       ],
-      "forma_pago": "CONTADO"
+      "forma_pago": "CONTADO",
+      "uuid": "EVT-V1-1009-1"
     },
     {
       "id": "C-V1-9001",
@@ -407,7 +408,8 @@
       ],
       "actual_costs": [],
       "version": 1,
-      "forma_pago": "CONTADO"
+      "forma_pago": "CONTADO",
+      "uuid": "EVT-C-V1-9001-2"
     },
     {
       "id": "COT-10092310",
@@ -755,7 +757,8 @@
         }
       ],
       "version": 1,
-      "forma_pago": "CONTADO"
+      "forma_pago": "CONTADO",
+      "uuid": "EVT-COT-10092310-3"
     }
   ]
 }

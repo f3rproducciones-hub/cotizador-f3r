@@ -149,8 +149,12 @@ def open_folder_in_windows(folder_path=None):
     """Abre la carpeta estructurada directamente en el Explorador de Archivos de Windows."""
     target = folder_path if (folder_path and os.path.exists(folder_path)) else ROOT_F3R
     init_storage()
-    try:
-        os.startfile(target)
-        return True, target
-    except Exception as e:
-        return False, str(e)
+    if hasattr(os, "startfile"):
+        try:
+            os.startfile(target)
+            return True, "Carpeta abierta en el Explorador de Windows."
+        except Exception as e:
+            return False, f"No se pudo abrir la carpeta: {e}"
+    else:
+        return False, "Función disponible exclusivamente en Windows local. En la nube, descarga tus archivos desde el Módulo 5."
+
