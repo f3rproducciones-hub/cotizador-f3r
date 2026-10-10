@@ -148,6 +148,24 @@ st.markdown("""
     }
 
     /* ============================================================== */
+    /* OPTIMIZACIÓN VISUAL PARA COMPUTADORES Y MONITORES DE ESCRITORIO (PC) */
+    /* ============================================================== */
+    @media (min-width: 769px) {
+        .main .block-container {
+            padding-top: 1.8rem !important;
+            padding-bottom: 3.5rem !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+            max-width: 1440px !important;
+            margin: 0 auto !important;
+        }
+        .kpi-value {
+            font-size: clamp(1.3rem, 1.8vw, 1.8rem) !important;
+            white-space: nowrap !important;
+        }
+    }
+
+    /* ============================================================== */
     /* RESPONSIVIDAD PARA CELULARES Y TABLETS (PANTALLAS MÓVILES)    */
     /* ============================================================== */
     @media (max-width: 768px) {
@@ -501,6 +519,16 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
             cur["nit"] = st.text_input("NIT / Documento Cliente:", value=cur.get("nit", ""), placeholder="Ej: 900.123.456-7 o C.C.", key=f"cot_nit_{seed}")
         with c2:
             cur["event_name"] = st.text_input("Nombre del Evento:*", value=cur.get("event_name", ""), placeholder="Ej: Concierto, Boda, Family Day...", key=f"cot_evname_{seed}")
+            raw_ev_date = cur.get("event_date")
+            try:
+                if raw_ev_date:
+                    val_date = datetime.strptime(str(raw_ev_date).split("T")[0], "%Y-%m-%d").date()
+                else:
+                    val_date = date.today()
+            except Exception:
+                val_date = date.today()
+            picked_date = st.date_input("Fecha Prevista del Evento:*", value=val_date, key=f"cot_evdate_{seed}")
+            cur["event_date"] = str(picked_date)
             cur["location"] = st.text_input("Lugar del Evento / Locación:", value=cur.get("location", ""), placeholder="Ej: Hotel, Centro de Convenciones...", key=f"cot_loc_{seed}")
             cur["pax"] = st.number_input("Aforo Estimado (Pax):", min_value=0, value=int(cur.get("pax", 0)), step=50, key=f"cot_pax_{seed}")
         with c3:
@@ -779,7 +807,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                     <div class="gold-title" style="font-size:1.15rem;">PROPUESTA FORMAL #{target_evt['id']}</div>
                     <p style="margin-top:10px; font-size:0.88rem; color:#1E293B; line-height: 1.6;">
                     <b>Cliente:</b> {target_evt['client']}<br>
-                    <b>NIT:</b> {target_evt.get('nit', '800.141.648-9')}<br>
+                    <b>NIT:</b> {target_evt.get('nit') or 'N/A'}<br>
                     <b>Evento:</b> {target_evt.get('event_name', '')}<br>
                     <b>Fecha:</b> {target_evt.get('event_date')}<br>
                     <b>Aforo:</b> {target_evt.get('pax', 0)} pax<br>
@@ -838,7 +866,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                     '</div>',
                     unsafe_allow_html=True
                 )
-                pdf_frame = f'<iframe src="data:application/pdf;base64,{pdf_b64}" width="100%" height="620" type="application/pdf" style="border: 2px solid #d4af37; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.5);"></iframe>'
+                pdf_frame = f'<iframe src="data:application/pdf;base64,{pdf_b64}" width="100%" height="720" type="application/pdf" style="border: 2px solid #d4af37; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.5);"></iframe>'
                 st.markdown(pdf_frame, unsafe_allow_html=True)
 
 # ==============================================================================

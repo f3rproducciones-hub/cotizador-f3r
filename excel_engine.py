@@ -72,7 +72,7 @@ def build_quote_excel(evt):
     
     client_rows = [
         ("Cliente / Razón Social:", evt.get("client", "Cliente")),
-        ("NIT / Documento:", evt.get("nit", "800.141.648-9")),
+        ("NIT / Documento:", evt.get("nit") or "N/A"),
         ("Nombre del Evento:", evt.get("event_name", "Evento F3R")),
         ("Lugar / Locación:", evt.get("location", "Por definir")),
         ("Aforo Estimado:", f"{evt.get('pax', 0)} personas"),

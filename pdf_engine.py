@@ -235,7 +235,7 @@ def build_pdf(evt):
     pdf.set_xy(15, 40.5)
     pdf.cell(92, 3.6, f"A nombre de: {evt.get('client', 'Cliente')[:45]}", new_x="LMARGIN", new_y="NEXT")
     pdf.set_x(15)
-    pdf.cell(92, 3.6, f"NIT / C.C.: {evt.get('nit', '800.141.648-9')}", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(92, 3.6, f"NIT / C.C.: {evt.get('nit') or 'N/A'}", new_x="LMARGIN", new_y="NEXT")
     pdf.set_x(15)
     pdf.cell(92, 3.6, f"Evento: {evt.get('event_name', 'Evento')} | Aforo: {evt.get('pax', 0)} pax", new_x="LMARGIN", new_y="NEXT")
     pdf.set_x(15)
@@ -435,7 +435,7 @@ def build_pdf(evt):
     pdf.set_x(118)
     pdf.set_font(font, '', 8)
     pdf.set_text_color(71, 85, 105)
-    pdf.cell(76, 3.8, f"NIT / C.C.: {evt.get('nit', '800.141.648-9')}", 0, align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(76, 3.8, f"NIT / C.C.: {evt.get('nit') or 'N/A'}", 0, align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_x(118)
     pdf.cell(76, 3.8, "Firma Autorizada / Aceptación", 0, align='C')
 
