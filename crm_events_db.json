@@ -1,0 +1,761 @@
+{
+  "events": [
+    {
+      "id": "V1-1009",
+      "client": "ESCUELA NAVAL DE CADETES ALMIRANTE PADILLA - ENAP",
+      "nit": "800.141.648-9",
+      "event_name": "Family Day ENAP 2026",
+      "contact_person": "Comando Base Naval / Dpto Bienestar",
+      "contact_email": "bienestar@enap.edu.co",
+      "contact_phone": "+57 333 434 0735",
+      "event_date": "2026-10-18",
+      "stage": "Ganado / Montaje",
+      "prob_win": 100,
+      "location": "Campo de Paradas y Zonas Verdes ENAP - Manzanillo",
+      "pax": 1200,
+      "created_at": "2026-10-09",
+      "version": 1,
+      "provider_info": {
+        "razon_social": "F3R PRODUCCIONES S.A.S.",
+        "nit": "902106670-3",
+        "telefono": "+57 333 434 0735",
+        "instagram": "@f3rproducciones",
+        "email": "f3rproducciones@gmail.com",
+        "direccion": "Cartagena de Indias Diagonal 31 80B75 Of 501",
+        "contacto": "Francisco Ricaurte",
+        "cargo": "Gerente",
+        "forma_pago": "CONTADO",
+        "banco": "Cuenta de Ahorros Bancolombia # 788 000 169-77 a Nombre de F3R PRODUCCIONES S.A.S."
+      },
+      "notes": "Producción Integral Family Day ENAP: Sonido DAS Aero 40, Luces, Tarima Ground Support, Pantalla LED, Generadores y Carpas.",
+      "items": [
+        {
+          "categoria": "SONIDO",
+          "item": "Cabina line array DAS AERO 40 (6 por lado)",
+          "cantidad": 12,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Subwoofer Dobles 2x18 DAS LX218",
+          "cantidad": 6,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Monitor de piso DAS SM15",
+          "cantidad": 4,
+          "costo_unit": 131940,
+          "precio_unit": 150000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Side Fill DAS VANTEC",
+          "cantidad": 2,
+          "costo_unit": 351840,
+          "precio_unit": 400000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Cabina line array DAS AERO 40 para Relevo en estructura elevada",
+          "cantidad": 4,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Bajos dobles 2x18 JBL SLX para Relevo",
+          "cantidad": 4,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Consola midas M32",
+          "cantidad": 1,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Microfono inalámbrico y/o countryman con receptor SHURE SLX y QLX\ncon combinador de antenas x 4 UND",
+          "cantidad": 3,
+          "costo_unit": 422208,
+          "precio_unit": 480000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Micrófonos alámbricos Shure SM 57 y 58",
+          "cantidad": 20,
+          "costo_unit": 43980,
+          "precio_unit": 50000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Amplificador de bajo Ampeg 4*10",
+          "cantidad": 1,
+          "costo_unit": 263880,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Ingeniero de sonido",
+          "cantidad": 1,
+          "costo_unit": 879600,
+          "precio_unit": 1000000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Roadie",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Dj Profesional + Controladora",
+          "cantidad": 1,
+          "costo_unit": 1319400,
+          "precio_unit": 1500000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Par led RGBWUV 5 vatios",
+          "cantidad": 50,
+          "costo_unit": 30786,
+          "precio_unit": 35000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Opti led",
+          "cantidad": 10,
+          "costo_unit": 43980,
+          "precio_unit": 50000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Cabezas móviles BEAM WASH SPOT",
+          "cantidad": 12,
+          "costo_unit": 175920,
+          "precio_unit": 200000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Blinder para iluminación exterior en Truss para Iluminación de 2mts",
+          "cantidad": 8,
+          "costo_unit": 193512,
+          "precio_unit": 220000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Iluminación tipo feria 500mts",
+          "cantidad": 500,
+          "costo_unit": 8796,
+          "precio_unit": 10000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Consola de luces GRANDMA 2 CW + FADER WING",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Camara de humo Hazer PRO",
+          "cantidad": 2,
+          "costo_unit": 131940,
+          "precio_unit": 150000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Luminotécnico",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Auxiliar de iluminación",
+          "cantidad": 1,
+          "costo_unit": 263880,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "ESTRUCTURA",
+          "item": "Escenario principal GROUND SUPPORT DE 12,80 X 9,80 X 7 MTS con tarima americana de 9x8 mts + puente interno para anclaje de iluminación y pantallas, TARIMA DE 9,76 X 8,54 X 1,40 ALTURA + 2 Escaleras de acceso",
+          "cantidad": 1,
+          "costo_unit": 7916402,
+          "precio_unit": 9000000.0
+        },
+        {
+          "categoria": "ESTRUCTURA",
+          "item": "Portico elevado sonido de relevo de 3x3mts",
+          "cantidad": 1,
+          "costo_unit": 879600,
+          "precio_unit": 1000000.0
+        },
+        {
+          "categoria": "ESTRUCTURA",
+          "item": "Estructuras tipo boom de 4 mts para luces de feria",
+          "cantidad": 12,
+          "costo_unit": 105552,
+          "precio_unit": 120000.0
+        },
+        {
+          "categoria": "AUDIOVISUALES",
+          "item": "Pantalla led 3,9 Pitch de 4x3 mts y 4 lagrimas horizontales de 0,5x2mts para escenario principal",
+          "cantidad": 1,
+          "costo_unit": 4222081,
+          "precio_unit": 4800000.0
+        },
+        {
+          "categoria": "GENERADORES ELECTRICOS",
+          "item": "Generador eléctrico 100kva",
+          "cantidad": 1,
+          "costo_unit": 1495320,
+          "precio_unit": 1700000.0
+        },
+        {
+          "categoria": "GENERADORES ELECTRICOS",
+          "item": "Generador eléctrico 75kva",
+          "cantidad": 1,
+          "costo_unit": 1407360,
+          "precio_unit": 1600000.0
+        },
+        {
+          "categoria": "GENERADORES ELECTRICOS",
+          "item": "20 Puntos Electricos para las carpas",
+          "cantidad": 20,
+          "costo_unit": 87960,
+          "precio_unit": 100000.0
+        },
+        {
+          "categoria": "ADICIONALES",
+          "item": "Carpas tipo hangar de 12 x 12 mts sin ambientar + Carpas 4x4 blancas para emprendimientos con punto de corriente cada carpa",
+          "cantidad": 1,
+          "costo_unit": 6597002,
+          "precio_unit": 7500000.0
+        },
+        {
+          "categoria": "ADICIONALES",
+          "item": "Combo TV 50\" + PS5 + Base a piso",
+          "cantidad": 6,
+          "costo_unit": 307860,
+          "precio_unit": 350000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Inflabe castillo",
+          "cantidad": 1,
+          "costo_unit": 483780,
+          "precio_unit": 550000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Cañon de espuma grande",
+          "cantidad": 1,
+          "costo_unit": 483780,
+          "precio_unit": 550000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Inflable pequeño niños pequeños",
+          "cantidad": 1,
+          "costo_unit": 263880,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Muro de escalar Niños 5-12 años",
+          "cantidad": 1,
+          "costo_unit": 703680,
+          "precio_unit": 800000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Inflable pista de obstaculos uso mixto alternando",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Transporte",
+          "cantidad": 1,
+          "costo_unit": 263880,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "Gasto Operativo y transporte de equipos",
+          "item": "Gasto Operativo + Transporte de equipos",
+          "cantidad": 1,
+          "costo_unit": 1759201,
+          "precio_unit": 2000000.0
+        }
+      ],
+      "actual_costs": [
+        {
+          "categoria": "Producción & Escenario",
+          "item": "RV (Sonido, Luces, Estructura)",
+          "costo_real": 38000000,
+          "factura_soporte": "RV-PROD"
+        },
+        {
+          "categoria": "Personal Técnico",
+          "item": "Omar (Logística / Técnico)",
+          "costo_real": 2500000,
+          "factura_soporte": "PAG-OMAR"
+        },
+        {
+          "categoria": "Estructura & Carpas",
+          "item": "Aba Carpas (Carpas Hangar y 4x4)",
+          "costo_real": 8650000,
+          "factura_soporte": "ABA-CARP"
+        },
+        {
+          "categoria": "Zona Infantil",
+          "item": "Inflables y Juegos",
+          "costo_real": 1900000,
+          "factura_soporte": "INF-RECR"
+        },
+        {
+          "categoria": "Audiovisuales",
+          "item": "TV 50' + PS5 (6 combos)",
+          "costo_real": 1400000,
+          "factura_soporte": "GAMING-01"
+        },
+        {
+          "categoria": "Personal Operativo",
+          "item": "Ricardo (Coordinación)",
+          "costo_real": 1000000,
+          "factura_soporte": "PAG-RIC"
+        },
+        {
+          "categoria": "Compras & Insumos",
+          "item": "Compras Varias",
+          "costo_real": 1000000,
+          "factura_soporte": "DIR-COMP"
+        },
+        {
+          "categoria": "Imprevistos",
+          "item": "Gastos Varios Operativos",
+          "costo_real": 1000000,
+          "factura_soporte": "GAS-VAR"
+        }
+      ],
+      "forma_pago": "CONTADO"
+    },
+    {
+      "id": "C-V1-9001",
+      "client": "Lorcy Atencio",
+      "nit": "1048935287",
+      "event_name": "Cumpleaños de Lorcy PRUEBA",
+      "contact_person": "Lorcy Atencio",
+      "contact_email": "lorcyac@gmail.com",
+      "contact_phone": "333 434 0735",
+      "event_date": "2026-10-09",
+      "stage": "Cotizado / Negociación",
+      "prob_win": 70,
+      "location": "Zona Social VERONA",
+      "pax": 100,
+      "created_at": "2026-10-09",
+      "provider_info": {
+        "razon_social": "F3R PRODUCCIONES S.A.S.",
+        "nit": "902106670-3",
+        "telefono": "+57 333 434 0735",
+        "instagram": "@f3rproducciones",
+        "email": "f3rproducciones@gmail.com",
+        "direccion": "Cartagena de Indias Diagonal 31 80B75 Of 501",
+        "contacto": "Francisco Ricaurte",
+        "cargo": "Gerente",
+        "forma_pago": "CONTADO",
+        "banco": "Cuenta de Ahorros Bancolombia # 788 000 169-77 a Nombre de F3R PRODUCCIONES S.A.S."
+      },
+      "notes": "",
+      "items": [
+        {
+          "categoria": "SONIDO",
+          "item": "Sistema de sonido tipo barra PRO DJ L618A",
+          "cantidad": 4,
+          "costo_unit": 150000.0,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "ESTRUCTURA",
+          "item": "Tarima en charolina blanca de 4,88x4,88mts a 60cm de altura",
+          "cantidad": 1,
+          "costo_unit": 1000000.0,
+          "precio_unit": 1500000.0
+        },
+        {
+          "categoria": "PERSONAL & STAFF",
+          "item": "Tecnico de Sonido",
+          "cantidad": 1,
+          "costo_unit": 250000.0,
+          "precio_unit": 350000.0
+        },
+        {
+          "categoria": "GASTO OPERATIVO Y TRANSPORTE DE EQUIPOS",
+          "item": "Transporte de personal y equipos",
+          "cantidad": 1,
+          "costo_unit": 240000.0,
+          "precio_unit": 400000.0
+        }
+      ],
+      "actual_costs": [],
+      "version": 1,
+      "forma_pago": "CONTADO"
+    },
+    {
+      "id": "COT-10092310",
+      "client": "Open Sea",
+      "nit": "1048935287",
+      "event_name": "Cumpleaños de ",
+      "contact_person": "Comando Base Naval / Dpto Bienestar",
+      "contact_email": "lorcyac@gmail.com",
+      "contact_phone": "3015389706",
+      "event_date": "2026-10-18",
+      "stage": "Ganado / Montaje",
+      "prob_win": 100,
+      "location": "Zona Social Verona",
+      "pax": 1200,
+      "created_at": "2026-09-17",
+      "provider_info": {
+        "razon_social": "F3R PRODUCCIONES S.A.S.",
+        "nit": "902106670-3",
+        "telefono": "+57 333 434 0735",
+        "instagram": "@f3rproducciones",
+        "email": "f3rproducciones@gmail.com",
+        "direccion": "Cartagena de Indias Diagonal 31 80B75 Of 501",
+        "contacto": "Francisco Ricaurte",
+        "cargo": "Gerente",
+        "forma_pago": "CONTADO",
+        "banco": "Cuenta de Ahorros Bancolombia # 788 000 169-77 a Nombre de F3R PRODUCCIONES S.A.S."
+      },
+      "notes": "Producción Integral Family Day ENAP: Sonido Line Array DAS AERO 40 con relevos, Iluminación Beam/Par Led/Feria 500m, Ground Support 12.8x9.8m, Pantallas Led 3.9, Generadores 100kva/75kva, Carpas Hangar y Zona Infantil inflables.",
+      "items": [
+        {
+          "categoria": "SONIDO",
+          "item": "Cabina line array DAS AERO 40 (6 por lado)",
+          "cantidad": 12,
+          "costo_unit": 150000,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Subwoofer Dobles 2x18 DAS LX218",
+          "cantidad": 6,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Monitor de piso DAS SM15",
+          "cantidad": 4,
+          "costo_unit": 1250000,
+          "precio_unit": 150000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Side Fill DAS VANTEC",
+          "cantidad": 2,
+          "costo_unit": 351840,
+          "precio_unit": 400000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Cabina line array DAS AERO 40 para Relevo en estructura elevada",
+          "cantidad": 4,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Bajos dobles 2x18 JBL SLX para Relevo",
+          "cantidad": 4,
+          "costo_unit": 219900,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Consola midas M32",
+          "cantidad": 1,
+          "costo_unit": 150000,
+          "precio_unit": 250000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Microfono inalámbrico y/o countryman con receptor SHURE SLX y QLX\ncon combinador de antenas x 4 UND",
+          "cantidad": 3,
+          "costo_unit": 70000,
+          "precio_unit": 480000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Micrófonos alámbricos Shure SM 57 y 58",
+          "cantidad": 20,
+          "costo_unit": 43980,
+          "precio_unit": 50000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Amplificador de bajo Ampeg 4*10",
+          "cantidad": 1,
+          "costo_unit": 100000,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Ingeniero de sonido",
+          "cantidad": 1,
+          "costo_unit": 879600,
+          "precio_unit": 1000000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Roadie",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "SONIDO",
+          "item": "Dj Profesional + Controladora",
+          "cantidad": 1,
+          "costo_unit": 1319400,
+          "precio_unit": 1500000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Par led RGBWUV 5 vatios",
+          "cantidad": 50,
+          "costo_unit": 30786,
+          "precio_unit": 35000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Opti led",
+          "cantidad": 10,
+          "costo_unit": 43980,
+          "precio_unit": 50000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Cabezas móviles BEAM WASH SPOT",
+          "cantidad": 12,
+          "costo_unit": 175920,
+          "precio_unit": 200000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Blinder para iluminación exterior en Truss para Iluminación de 2mts",
+          "cantidad": 8,
+          "costo_unit": 193512,
+          "precio_unit": 220000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Iluminación tipo feria 500mts",
+          "cantidad": 500,
+          "costo_unit": 8796,
+          "precio_unit": 10000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Consola de luces GRANDMA 2 CW + FADER WING",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Camara de humo Hazer PRO",
+          "cantidad": 2,
+          "costo_unit": 131940,
+          "precio_unit": 150000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Luminotécnico",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "ILUMINACIÓN",
+          "item": "Auxiliar de iluminación",
+          "cantidad": 1,
+          "costo_unit": 263880,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "ESTRUCTURA",
+          "item": "Escenario principal GROUND SUPPORT DE 12,80 X 9,80 X 7 MTS con tarima americana de 9x8 mts + puente interno para anclaje de iluminación y pantallas, TARIMA DE 9,76 X 8,54 X 1,40 ALTURA + 2 Escaleras de acceso",
+          "cantidad": 1,
+          "costo_unit": 7916402,
+          "precio_unit": 9000000.0
+        },
+        {
+          "categoria": "ESTRUCTURA",
+          "item": "Portico elevado sonido de relevo de 3x3mts",
+          "cantidad": 1,
+          "costo_unit": 879600,
+          "precio_unit": 1000000.0
+        },
+        {
+          "categoria": "ESTRUCTURA",
+          "item": "Estructuras tipo boom de 4 mts para luces de feria",
+          "cantidad": 12,
+          "costo_unit": 105552,
+          "precio_unit": 120000.0
+        },
+        {
+          "categoria": "AUDIOVISUALES",
+          "item": "Pantalla led 3,9 Pitch de 4x3 mts y 4 lagrimas horizontales de 0,5x2mts para escenario principal",
+          "cantidad": 1,
+          "costo_unit": 4222081,
+          "precio_unit": 4800000.0
+        },
+        {
+          "categoria": "GENERADORES ELECTRICOS",
+          "item": "Generador eléctrico 100kva",
+          "cantidad": 1,
+          "costo_unit": 1495320,
+          "precio_unit": 1700000.0
+        },
+        {
+          "categoria": "GENERADORES ELECTRICOS",
+          "item": "Generador eléctrico 75kva",
+          "cantidad": 1,
+          "costo_unit": 1407360,
+          "precio_unit": 1600000.0
+        },
+        {
+          "categoria": "GENERADORES ELECTRICOS",
+          "item": "20 Puntos Electricos para las carpas",
+          "cantidad": 20,
+          "costo_unit": 87960,
+          "precio_unit": 100000.0
+        },
+        {
+          "categoria": "ADICIONALES",
+          "item": "Carpas tipo hangar de 12 x 12 mts sin ambientar + Carpas 4x4 blancas para emprendimientos con punto de corriente cada carpa",
+          "cantidad": 1,
+          "costo_unit": 6597002,
+          "precio_unit": 7500000.0
+        },
+        {
+          "categoria": "ADICIONALES",
+          "item": "Combo TV 50\" + PS5 + Base a piso",
+          "cantidad": 6,
+          "costo_unit": 307860,
+          "precio_unit": 350000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Inflabe castillo",
+          "cantidad": 1,
+          "costo_unit": 483780,
+          "precio_unit": 550000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Cañon de espuma grande",
+          "cantidad": 1,
+          "costo_unit": 483780,
+          "precio_unit": 550000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Inflable pequeño niños pequeños",
+          "cantidad": 1,
+          "costo_unit": 263880,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Muro de escalar Niños 5-12 años",
+          "cantidad": 1,
+          "costo_unit": 703680,
+          "precio_unit": 800000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Inflable pista de obstaculos uso mixto alternando",
+          "cantidad": 1,
+          "costo_unit": 439800,
+          "precio_unit": 500000.0
+        },
+        {
+          "categoria": "ZONA INFANTIL",
+          "item": "Transporte",
+          "cantidad": 1,
+          "costo_unit": 263880,
+          "precio_unit": 300000.0
+        },
+        {
+          "categoria": "Gasto Operativo y transporte de equipos",
+          "item": "Gasto Operativo + Transporte de equipos",
+          "cantidad": 1,
+          "costo_unit": 1759201,
+          "precio_unit": 2000000.0
+        }
+      ],
+      "actual_costs": [
+        {
+          "categoria": "Producción & Escenario",
+          "item": "RV (Sonido, Luces, Estructura)",
+          "costo_real": 38000000,
+          "factura_soporte": "RV-PROD"
+        },
+        {
+          "categoria": "Personal Técnico",
+          "item": "Omar (Logística / Técnico)",
+          "costo_real": 2500000,
+          "factura_soporte": "PAG-OMAR"
+        },
+        {
+          "categoria": "Estructura & Carpas",
+          "item": "Aba Carpas (Carpas Hangar y 4x4)",
+          "costo_real": 8650000,
+          "factura_soporte": "ABA-CARP"
+        },
+        {
+          "categoria": "Zona Infantil",
+          "item": "Inflables y Juegos",
+          "costo_real": 1900000,
+          "factura_soporte": "INF-RECR"
+        },
+        {
+          "categoria": "Audiovisuales",
+          "item": "TV 50' + PS5 (6 combos)",
+          "costo_real": 1400000,
+          "factura_soporte": "GAMING-01"
+        },
+        {
+          "categoria": "Personal Operativo",
+          "item": "Ricardo (Coordinación)",
+          "costo_real": 1000000,
+          "factura_soporte": "PAG-RIC"
+        },
+        {
+          "categoria": "Compras & Insumos",
+          "item": "Compras Varias",
+          "costo_real": 1000000,
+          "factura_soporte": "DIR-COMP"
+        },
+        {
+          "categoria": "Imprevistos",
+          "item": "Gastos Varios Operativos",
+          "costo_real": 1000000,
+          "factura_soporte": "GAS-VAR"
+        }
+      ],
+      "version": 1,
+      "forma_pago": "CONTADO"
+    }
+  ]
+}
