@@ -94,7 +94,10 @@ st.markdown("""
     }
     
     /* Botones primarios en Dorado F3R con texto Negro Ónix */
-    div.stButton > button[kind="primary"] {
+    div.stButton > button[kind="primary"],
+    div.stDownloadButton > button[kind="primary"],
+    div.stButton > button[data-testid="baseButton-primary"],
+    div.stDownloadButton > button[data-testid="baseButton-primary"] {
         background: linear-gradient(135deg, #D4AF37 0%, #C59B27 100%) !important;
         color: #000000 !important;
         font-weight: 700 !important;
@@ -103,7 +106,10 @@ st.markdown("""
         box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25) !important;
         transition: all 0.2s ease-in-out !important;
     }
-    div.stButton > button[kind="primary"]:hover {
+    div.stButton > button[kind="primary"]:hover,
+    div.stDownloadButton > button[kind="primary"]:hover,
+    div.stButton > button[data-testid="baseButton-primary"]:hover,
+    div.stDownloadButton > button[data-testid="baseButton-primary"]:hover {
         transform: translateY(-2px) !important;
         box-shadow: 0 6px 18px rgba(212, 175, 55, 0.45) !important;
         background: linear-gradient(135deg, #E5C158 0%, #D4AF37 100%) !important;
@@ -111,7 +117,8 @@ st.markdown("""
     }
 
     /* Botones secundarios elegantes en fondo blanco y borde gris sutil */
-    div.stButton > button {
+    div.stButton > button,
+    div.stDownloadButton > button {
         background-color: #FFFFFF !important;
         color: #0F172A !important;
         border: 1.5px solid #CBD5E1 !important;
@@ -119,7 +126,8 @@ st.markdown("""
         border-radius: 8px !important;
         transition: all 0.2s ease !important;
     }
-    div.stButton > button:hover {
+    div.stButton > button:hover,
+    div.stDownloadButton > button:hover {
         border-color: #D4AF37 !important;
         color: #000000 !important;
         box-shadow: 0 2px 8px rgba(212, 175, 55, 0.15) !important;
@@ -634,7 +642,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                         st.rerun()
 
                 with btn_col2:
-                    if st.button("🗑️ ELIMINAR ESTE ÍTEM", use_container_width=True):
+                    if st.button("🗑️ ELIMINAR ESTE ÍTEM", use_container_width=True, key=f"btn_del_item_{seed}_{sel_item_idx}"):
                         eliminado = cur["items"].pop(sel_item_idx)
                         st.warning(f"Se eliminó el ítem: {eliminado.get('item', '')}")
                         st.rerun()
@@ -655,7 +663,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
             with ag5:
                 nuevo_price = st.number_input("Precio Venta Unit (COP):", min_value=0, value=0, step=50000, key="ag_price")
 
-            if st.button("➕ Insertar a la Cotización", type="primary"):
+            if st.button("➕ Insertar a la Cotización", type="primary", use_container_width=True, key=f"btn_add_item_{seed}"):
                 if nuevo_desc.strip():
                     cur["items"].append({
                         "categoria": nuevo_cat,
@@ -722,9 +730,9 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
 
         # ---------------- PERSISTENCIA EN EL CRM ----------------
         st.markdown("<br>", unsafe_allow_html=True)
-        col_save1, col_save2 = st.columns([1.8, 1])
+        col_save1, col_save2 = st.columns([1.8, 1.2])
         with col_save1:
-            if st.button("💾 GUARDAR TODOS LOS CAMBIOS EN EL CRM DE F3R PRODUCCIONES", type="primary", use_container_width=True):
+            if st.button("💾 GUARDAR TODOS LOS CAMBIOS EN EL CRM DE F3R PRODUCCIONES", type="primary", use_container_width=True, key=f"btn_save_crm_main_{seed}"):
                 if not cur["client"].strip() or not cur["event_name"].strip():
                     st.error("Por favor completa los campos de Cliente y Nombre del Evento antes de guardar.")
                 else:
@@ -766,6 +774,9 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                     st.success(msg)
                     st.balloons()
                     st.rerun()
+
+        with col_save2:
+            st.info("💡 Tras guardar, dirígete a la pestaña superior **'📄 Generador & Descarga de Cotización PDF'** para previsualizar o descargar tus documentos oficiales.")
 
     with tab_ver_pdf:
         st.markdown("<h3 class='gold-title'>📄 Generador y Descarga de Propuesta Oficial (PDF & Excel)</h3>", unsafe_allow_html=True)
@@ -881,7 +892,11 @@ elif modulo == "💰 2. Matriz de Utilidad (Pre vs Real)":
     """)
 
     dict_evs = {f"{e['id']} | {e['client']} ({e.get('event_name', '')})": e for e in db.get("events", [])}
-    sel_evt_fin = st.selectbox("Seleccione el Evento a Auditar Financieramente:", list(dict_evs.keys()), key="fin_sel")
+    if not dict_evs:
+        st.info("ℹ️ Aún no hay eventos registrados en el CRM para auditar financieramente. Crea tu primera cotización en el Módulo 1.")
+        sel_evt_fin = None
+    else:
+        sel_evt_fin = st.selectbox("Seleccione el Evento a Auditar Financieramente:", list(dict_evs.keys()), key="fin_sel")
 
     if sel_evt_fin:
         evt = dict_evs[sel_evt_fin]
@@ -1034,38 +1049,41 @@ elif modulo == "🗂️ 3. Pipeline CRM & Seguimiento":
     st.markdown("<h2 class='gold-title'>🗂️ Pipeline Comercial F3R & Seguimiento</h2>", unsafe_allow_html=True)
     st.markdown("Gestiona el ciclo de vida de cada propuesta comercial y documenta acuerdos con los clientes.")
 
-    for evt in events:
-        sub_v = sum(i['cantidad'] * i['precio_unit'] for i in evt.get('items', []))
-        c_pre = sum(i['cantidad'] * i.get('costo_unit', 0) for i in evt.get('items', []))
-        u_pre = sub_v - c_pre
+    if not events:
+        st.info("ℹ️ Aún no hay propuestas registradas en el CRM. Crea tu primera cotización en el Módulo 1.")
+    else:
+        for evt in events:
+            sub_v = sum(i['cantidad'] * i['precio_unit'] for i in evt.get('items', []))
+            c_pre = sum(i['cantidad'] * i.get('costo_unit', 0) for i in evt.get('items', []))
+            u_pre = sub_v - c_pre
 
-        with st.expander(f"📍 **{evt['id']} | {evt['client']}** — {evt['event_name']} ({evt.get('stage', 'Cotizado')})", expanded=True):
-            col_a, col_b, col_c = st.columns([1.2, 1.2, 1])
-            with col_a:
-                st.markdown(f"**Contacto:** {evt.get('contact_person', 'N/A')}")
-                st.markdown(f"**Teléfono:** {evt.get('contact_phone', 'N/A')}")
-                st.markdown(f"**Ubicación:** {evt.get('location', 'N/A')}")
-                st.markdown(f"**Fecha Prevista:** {evt.get('event_date')}")
-            with col_b:
-                st.markdown(f"**Aforo:** {evt.get('pax', 0)} personas")
-                st.markdown(f"**Venta Cotizada:** `{fmt_money(sub_v)}`")
-                st.markdown(f"**Utilidad Pre-Montaje:** `{fmt_money(u_pre)}`")
-            with col_c:
-                etapas = ['Prospecto / Lead', 'Cotizado / Negociación', 'Ganado / Montaje', 'Liquidado / Cerrado', 'Perdido']
-                stg = evt.get('stage', 'Cotizado / Negociación')
-                new_stg = st.selectbox("Estado del Evento:", etapas, index=etapas.index(stg) if stg in etapas else 1, key=f"stg_sel_{evt['id']}")
-                if new_stg != stg:
-                    evt['stage'] = new_stg
+            with st.expander(f"📍 **{evt['id']} | {evt['client']}** — {evt['event_name']} ({evt.get('stage', 'Cotizado')})", expanded=True):
+                col_a, col_b, col_c = st.columns([1.2, 1.2, 1])
+                with col_a:
+                    st.markdown(f"**Contacto:** {evt.get('contact_person', 'N/A')}")
+                    st.markdown(f"**Teléfono:** {evt.get('contact_phone', 'N/A')}")
+                    st.markdown(f"**Ubicación:** {evt.get('location', 'N/A')}")
+                    st.markdown(f"**Fecha Prevista:** {evt.get('event_date')}")
+                with col_b:
+                    st.markdown(f"**Aforo:** {evt.get('pax', 0)} personas")
+                    st.markdown(f"**Venta Cotizada:** `{fmt_money(sub_v)}`")
+                    st.markdown(f"**Utilidad Pre-Montaje:** `{fmt_money(u_pre)}`")
+                with col_c:
+                    etapas = ['Prospecto / Lead', 'Cotizado / Negociación', 'Ganado / Montaje', 'Liquidado / Cerrado', 'Perdido']
+                    stg = evt.get('stage', 'Cotizado / Negociación')
+                    new_stg = st.selectbox("Estado del Evento:", etapas, index=etapas.index(stg) if stg in etapas else 1, key=f"stg_sel_{evt['id']}")
+                    if new_stg != stg:
+                        evt['stage'] = new_stg
+                        save_db(db)
+                        st.success("Estado actualizado.")
+                        st.rerun()
+
+                st.markdown("**Bitácora Comercial F3R:**")
+                notas = st.text_area("Registro de llamadas, acuerdos o cambios solicitados:", value=evt.get('notes', ''), key=f"notes_crm_{evt['id']}", height=65)
+                if st.button("💾 Guardar Bitácora", key=f"btn_save_crm_{evt['id']}"):
+                    evt['notes'] = notas
                     save_db(db)
-                    st.success("Estado actualizado.")
-                    st.rerun()
-
-            st.markdown("**Bitácora Comercial F3R:**")
-            notas = st.text_area("Registro de llamadas, acuerdos o cambios solicitados:", value=evt.get('notes', ''), key=f"notes_crm_{evt['id']}", height=65)
-            if st.button("💾 Guardar Bitácora", key=f"btn_save_crm_{evt['id']}"):
-                evt['notes'] = notas
-                save_db(db)
-                st.success("Bitácora comercial guardada con éxito en la base de datos.")
+                    st.success("Bitácora comercial guardada con éxito en la base de datos.")
 
 # ==============================================================================
 # MÓDULO 4: DASHBOARD EJECUTIVO
@@ -1311,18 +1329,21 @@ elif modulo == "📁 5. Base de Datos & Archivos F3R (Excel/PDF)":
                 
             with col_act_f:
                 st.write("")
-                st.write("")
-                with open(target_file_obj["full_path"], "rb") as f_binary:
-                    file_data = f_binary.read()
-                mime_t = "application/pdf" if target_file_obj["filename"].endswith(".pdf") else "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                st.download_button(
-                    label=f"⬇️ Descargar ({target_file_obj['size_kb']} KB)",
-                    data=file_data,
-                    file_name=target_file_obj["filename"],
-                    mime=mime_t,
-                    type="primary",
-                    use_container_width=True
-                )
+                if os.path.exists(target_file_obj["full_path"]):
+                    with open(target_file_obj["full_path"], "rb") as f_binary:
+                        file_data = f_binary.read()
+                    mime_t = "application/pdf" if target_file_obj["filename"].endswith(".pdf") else "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    st.download_button(
+                        label=f"⬇️ Descargar ({target_file_obj['size_kb']} KB)",
+                        data=file_data,
+                        file_name=target_file_obj["filename"],
+                        mime=mime_t,
+                        type="primary",
+                        use_container_width=True,
+                        key="btn_down_specific_file"
+                    )
+                else:
+                    st.warning("El archivo no se encuentra en la ruta esperada en disco.")
         else:
             st.info("No se encontraron archivos con los criterios de búsqueda especificados.")
 
