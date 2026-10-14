@@ -259,6 +259,48 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Categorías estándar oficiales del sector eventos F3R
+CATEGORIAS_EVENTOS = [
+    "SONIDO",
+    "ILUMINACIÓN",
+    "ESTRUCTURA",
+    "AUDIOVISUALES",
+    "GENERADORES ELECTRICOS",
+    "ADICIONALES",
+    "ZONA INFANTIL",
+    "ALIMENTOS & BEBIDAS",
+    "GASTOS OPERATIVOS & TRANSPORTE",
+    "PERSONAL & STAFF",
+    "OTROS"
+]
+
+def normalize_categoria(cat_val):
+    if not cat_val:
+        return "OTROS"
+    s = str(cat_val).strip()
+    s_upper = s.upper()
+    if "ILUMIN" in s_upper:
+        return "ILUMINACIÓN"
+    if "SONID" in s_upper:
+        return "SONIDO"
+    if "ESTRUCT" in s_upper:
+        return "ESTRUCTURA"
+    if "AUDIO" in s_upper:
+        return "AUDIOVISUALES"
+    if "GENERAD" in s_upper:
+        return "GENERADORES ELECTRICOS"
+    if "ADICION" in s_upper:
+        return "ADICIONALES"
+    if "INFANT" in s_upper:
+        return "ZONA INFANTIL"
+    if "ALIMENT" in s_upper or "BEBID" in s_upper or "CATER" in s_upper:
+        return "ALIMENTOS & BEBIDAS"
+    if "GASTO" in s_upper or "TRANSP" in s_upper or "OPERAT" in s_upper:
+        return "GASTOS OPERATIVOS & TRANSPORTE"
+    if "PERSONAL" in s_upper or "STAFF" in s_upper or "TECNIC" in s_upper:
+        return "PERSONAL & STAFF"
+    return "OTROS"
+
 # ----------------- GESTIÓN PERSISTENTE DE BASE DE DATOS -----------------
 def load_db():
     if not os.path.exists(DB_FILE):
@@ -266,12 +308,14 @@ def load_db():
     with open(DB_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
         
-    # Asegurar que cada evento posea un identificador único persistente (UUID)
+    # Asegurar UUID persistente y normalización de categorías
     updated = False
     for idx, ev in enumerate(data.get("events", [])):
         if "uuid" not in ev:
             ev["uuid"] = f"EVT-{ev.get('id', 'HIST')}-{idx+1}"
             updated = True
+        for it in ev.get("items", []):
+            it["categoria"] = normalize_categoria(it.get("categoria"))
     if updated:
         with open(DB_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
@@ -317,21 +361,6 @@ def get_cot_code(event_dict, existing_events=None):
 
 db = load_db()
 events = db.get("events", [])
-
-# Categorías estándar del sector eventos F3R
-CATEGORIAS_EVENTOS = [
-    "SONIDO",
-    "ILUMINACIÓN",
-    "ESTRUCTURA",
-    "AUDIOVISUALES",
-    "GENERADORES ELECTRICOS",
-    "ADICIONALES",
-    "ZONA INFANTIL",
-    "ALIMENTOS & BEBIDAS",
-    "Gasto Operativo y transporte de equipos",
-    "PERSONAL & STAFF",
-    "OTROS"
-]
 
 # ----------------- SIDEBAR CORPORATIVO F3R -----------------
 if os.path.exists(LOGO_FILE):
@@ -566,41 +595,78 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
         ])
 
         with tab_tabla:
-            if cur.get("items"):
-                st.caption("💡 Modifica cualquier cantidad, costo o precio de venta directamente en la tabla y los cambios se reflejarán de inmediato:")
-                df_editor = pd.DataFrame(cur["items"])
-                edited_grid = st.data_editor(
-                    df_editor,
-                    column_config={
-                        "categoria": st.column_config.SelectboxColumn("Categoría", options=CATEGORIAS_EVENTOS, required=True),
-                        "item": st.column_config.TextColumn("Descripción del Ítem / Servicio", width="large", required=True),
-                        "cantidad": st.column_config.NumberColumn("Cant", min_value=1, step=1, required=True),
-                        "costo_unit": st.column_config.NumberColumn("Costo Unit (COP)", format="$%d", step=10000),
-                        "precio_unit": st.column_config.NumberColumn("Precio Venta Unit (COP)", format="$%d", step=10000, required=True)
-                    },
-                    num_rows="dynamic",
-                    use_container_width=True,
-                    key=f"cot_grid_editor_{seed}"
-                )
-                cur["items"] = edited_grid.to_dict('records')
-            else:
-                st.info("📋 Cotización en blanco (0 equipos o suministros cargados). Puedes agregar servicios en la pestaña '➕ Agregar Nuevo Ítem' o escribirlos directamente en la tabla a continuación:")
-                df_empty = pd.DataFrame(columns=["categoria", "item", "cantidad", "costo_unit", "precio_unit"])
-                edited_grid_new = st.data_editor(
-                    df_empty,
-                    column_config={
-                        "categoria": st.column_config.SelectboxColumn("Categoría", options=CATEGORIAS_EVENTOS, required=True),
-                        "item": st.column_config.TextColumn("Descripción del Ítem / Servicio", width="large", required=True),
-                        "cantidad": st.column_config.NumberColumn("Cant", min_value=1, step=1, required=True),
-                        "costo_unit": st.column_config.NumberColumn("Costo Unit (COP)", format="$%d", step=10000),
-                        "precio_unit": st.column_config.NumberColumn("Precio Venta Unit (COP)", format="$%d", step=10000, required=True)
-                    },
-                    num_rows="dynamic",
-                    use_container_width=True,
-                    key=f"cot_grid_editor_empty_{seed}"
-                )
-                if not edited_grid_new.empty:
-                    cur["items"] = [r for r in edited_grid_new.to_dict('records') if str(r.get('item', '')).strip()]
+            st.caption("💡 Modifica cualquier cantidad, costo o precio de venta directamente en la tabla. Para agregar un ítem nuevo, pulsa el botón **(+)** al final de la tabla:")
+
+            raw_items = cur.get("items", [])
+            df_rows = []
+            for it in raw_items:
+                df_rows.append({
+                    "categoria": normalize_categoria(it.get("categoria")),
+                    "item": str(it.get("item") or "").strip(),
+                    "cantidad": int(it.get("cantidad") or 1),
+                    "costo_unit": float(it.get("costo_unit") or 0.0),
+                    "precio_unit": float(it.get("precio_unit") or 0.0)
+                })
+
+            df_editor = pd.DataFrame(df_rows, columns=["categoria", "item", "cantidad", "costo_unit", "precio_unit"])
+
+            edited_grid = st.data_editor(
+                df_editor,
+                column_config={
+                    "categoria": st.column_config.SelectboxColumn(
+                        "Categoría",
+                        options=CATEGORIAS_EVENTOS,
+                        default="SONIDO",
+                        required=False
+                    ),
+                    "item": st.column_config.TextColumn(
+                        "Descripción del Ítem / Servicio",
+                        width="large",
+                        default="",
+                        required=False
+                    ),
+                    "cantidad": st.column_config.NumberColumn(
+                        "Cant",
+                        min_value=1,
+                        step=1,
+                        default=1,
+                        required=False
+                    ),
+                    "costo_unit": st.column_config.NumberColumn(
+                        "Costo Unit (COP)",
+                        format="$%d",
+                        step=10000,
+                        default=0,
+                        required=False
+                    ),
+                    "precio_unit": st.column_config.NumberColumn(
+                        "Precio Venta Unit (COP)",
+                        format="$%d",
+                        step=10000,
+                        default=0,
+                        required=False
+                    )
+                },
+                num_rows="dynamic",
+                use_container_width=True,
+                key=f"cot_grid_editor_main_{seed}"
+            )
+
+            if edited_grid is not None:
+                updated_items = []
+                for r in edited_grid.to_dict('records'):
+                    txt = str(r.get('item') or '').strip()
+                    p_val = float(r.get('precio_unit') or 0.0)
+                    c_val = float(r.get('costo_unit') or 0.0)
+                    if txt or p_val > 0 or c_val > 0:
+                        updated_items.append({
+                            "categoria": normalize_categoria(r.get('categoria')),
+                            "item": txt if txt else "Servicio Cotizado",
+                            "cantidad": max(1, int(r.get('cantidad') or 1)),
+                            "costo_unit": max(0.0, c_val),
+                            "precio_unit": max(0.0, p_val)
+                        })
+                cur["items"] = updated_items
 
         with tab_edicion_puntual:
             st.markdown("##### Selecciona un ítem para modificar su valor, cantidad o eliminarlo:")
@@ -613,7 +679,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
 
                 ce1, ce2, ce3, ce4 = st.columns([1.5, 3, 1, 1.2])
                 with ce1:
-                    edit_cat = st.selectbox("Categoría:", CATEGORIAS_EVENTOS, index=CATEGORIAS_EVENTOS.index(target_item['categoria']) if target_item['categoria'] in CATEGORIAS_EVENTOS else 0, key=f"edit_cat_val_{seed}_{sel_item_idx}")
+                    edit_cat = st.selectbox("Categoría:", CATEGORIAS_EVENTOS, index=CATEGORIAS_EVENTOS.index(normalize_categoria(target_item['categoria'])) if normalize_categoria(target_item['categoria']) in CATEGORIAS_EVENTOS else 0, key=f"edit_cat_val_{seed}_{sel_item_idx}")
                 with ce2:
                     edit_desc = st.text_input("Descripción del Servicio:", value=target_item['item'], key=f"edit_desc_val_{seed}_{sel_item_idx}")
                 with ce3:
@@ -632,7 +698,7 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
                 with btn_col1:
                     if st.button("💾 Actualizar Valores de este Ítem", type="primary", use_container_width=True):
                         cur["items"][sel_item_idx] = {
-                            "categoria": edit_cat,
+                            "categoria": normalize_categoria(edit_cat),
                             "item": edit_desc.strip(),
                             "cantidad": int(edit_cant),
                             "costo_unit": float(edit_cost),
@@ -651,31 +717,33 @@ if modulo == "📝 1. Cotizador Inteligente & Generador PDF":
 
         with tab_agregar:
             st.markdown("##### Agregar un nuevo suministro o servicio a la cotización:")
-            ag1, ag2, ag3, ag4, ag5 = st.columns([1.5, 3, 0.8, 1.2, 1.2])
-            with ag1:
-                nuevo_cat = st.selectbox("Categoría:", CATEGORIAS_EVENTOS, key="ag_cat")
-            with ag2:
-                nuevo_desc = st.text_input("Descripción del Equipo o Servicio:", placeholder="Ej: Póliza de responsabilidad civil", key="ag_desc")
-            with ag3:
-                nuevo_cant = st.number_input("Cant:", min_value=1, value=1, key="ag_cant")
-            with ag4:
-                nuevo_cost = st.number_input("Costo Unit Previsto (COP):", min_value=0, value=0, step=50000, key="ag_cost")
-            with ag5:
-                nuevo_price = st.number_input("Precio Venta Unit (COP):", min_value=0, value=0, step=50000, key="ag_price")
+            with st.form(key=f"form_add_new_item_{seed}", clear_on_submit=True):
+                ag1, ag2, ag3, ag4, ag5 = st.columns([1.5, 3, 0.8, 1.2, 1.2])
+                with ag1:
+                    nuevo_cat = st.selectbox("Categoría:", CATEGORIAS_EVENTOS)
+                with ag2:
+                    nuevo_desc = st.text_input("Descripción del Equipo o Servicio:*", placeholder="Ej: Póliza de responsabilidad civil")
+                with ag3:
+                    nuevo_cant = st.number_input("Cant:", min_value=1, value=1)
+                with ag4:
+                    nuevo_cost = st.number_input("Costo Unit Previsto (COP):", min_value=0, value=0, step=50000)
+                with ag5:
+                    nuevo_price = st.number_input("Precio Venta Unit (COP):", min_value=0, value=0, step=50000)
 
-            if st.button("➕ Insertar a la Cotización", type="primary", use_container_width=True, key=f"btn_add_item_{seed}"):
-                if nuevo_desc.strip():
-                    cur["items"].append({
-                        "categoria": nuevo_cat,
-                        "item": nuevo_desc.strip(),
-                        "cantidad": int(nuevo_cant),
-                        "costo_unit": float(nuevo_cost),
-                        "precio_unit": float(nuevo_price)
-                    })
-                    st.success("¡Nuevo ítem insertado con éxito!")
-                    st.rerun()
-                else:
-                    st.warning("Escribe una descripción para el servicio.")
+                btn_add_item_sub = st.form_submit_button("➕ Insertar a la Cotización (o presiona Enter)", type="primary", use_container_width=True)
+                if btn_add_item_sub:
+                    if nuevo_desc.strip():
+                        cur["items"].append({
+                            "categoria": normalize_categoria(nuevo_cat),
+                            "item": nuevo_desc.strip(),
+                            "cantidad": int(nuevo_cant),
+                            "costo_unit": float(nuevo_cost),
+                            "precio_unit": float(nuevo_price)
+                        })
+                        st.success(f"¡Ítem '{nuevo_desc.strip()}' insertado con éxito!")
+                        st.rerun()
+                    else:
+                        st.error("Por favor escribe la descripción del equipo o servicio.")
 
         # ---------------- TOTALES Y VALIDACIÓN FINANCIERA FORMULADA ----------------
         calc_res = sanitize_and_compute_items(cur.get("items", []))

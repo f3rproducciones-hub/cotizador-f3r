@@ -33,266 +33,266 @@
           "categoria": "SONIDO",
           "item": "Cabina line array DAS AERO 40 (6 por lado)",
           "cantidad": 12,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Subwoofer Dobles 2x18 DAS LX218",
           "cantidad": 6,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Monitor de piso DAS SM15",
           "cantidad": 4,
-          "costo_unit": 131940,
+          "costo_unit": 131940.0,
           "precio_unit": 150000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Side Fill DAS VANTEC",
           "cantidad": 2,
-          "costo_unit": 351840,
+          "costo_unit": 351840.0,
           "precio_unit": 400000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Cabina line array DAS AERO 40 para Relevo en estructura elevada",
           "cantidad": 4,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Bajos dobles 2x18 JBL SLX para Relevo",
           "cantidad": 4,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Consola midas M32",
           "cantidad": 1,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Microfono inalámbrico y/o countryman con receptor SHURE SLX y QLX\ncon combinador de antenas x 4 UND",
           "cantidad": 3,
-          "costo_unit": 422208,
+          "costo_unit": 422208.0,
           "precio_unit": 480000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Micrófonos alámbricos Shure SM 57 y 58",
           "cantidad": 20,
-          "costo_unit": 43980,
+          "costo_unit": 43980.0,
           "precio_unit": 50000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Amplificador de bajo Ampeg 4*10",
           "cantidad": 1,
-          "costo_unit": 263880,
+          "costo_unit": 263880.0,
           "precio_unit": 300000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Ingeniero de sonido",
           "cantidad": 1,
-          "costo_unit": 879600,
+          "costo_unit": 879600.0,
           "precio_unit": 1000000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Roadie",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Dj Profesional + Controladora",
           "cantidad": 1,
-          "costo_unit": 1319400,
+          "costo_unit": 1319400.0,
           "precio_unit": 1500000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Par led RGBWUV 5 vatios",
           "cantidad": 50,
-          "costo_unit": 30786,
+          "costo_unit": 30786.0,
           "precio_unit": 35000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Opti led",
           "cantidad": 10,
-          "costo_unit": 43980,
+          "costo_unit": 43980.0,
           "precio_unit": 50000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Cabezas móviles BEAM WASH SPOT",
           "cantidad": 12,
-          "costo_unit": 175920,
+          "costo_unit": 175920.0,
           "precio_unit": 200000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Blinder para iluminación exterior en Truss para Iluminación de 2mts",
           "cantidad": 8,
-          "costo_unit": 193512,
+          "costo_unit": 193512.0,
           "precio_unit": 220000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Iluminación tipo feria 500mts",
           "cantidad": 500,
-          "costo_unit": 8796,
+          "costo_unit": 8796.0,
           "precio_unit": 10000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Consola de luces GRANDMA 2 CW + FADER WING",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Camara de humo Hazer PRO",
           "cantidad": 2,
-          "costo_unit": 131940,
+          "costo_unit": 131940.0,
           "precio_unit": 150000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Luminotécnico",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Auxiliar de iluminación",
           "cantidad": 1,
-          "costo_unit": 263880,
+          "costo_unit": 263880.0,
           "precio_unit": 300000.0
         },
         {
           "categoria": "ESTRUCTURA",
           "item": "Escenario principal GROUND SUPPORT DE 12,80 X 9,80 X 7 MTS con tarima americana de 9x8 mts + puente interno para anclaje de iluminación y pantallas, TARIMA DE 9,76 X 8,54 X 1,40 ALTURA + 2 Escaleras de acceso",
           "cantidad": 1,
-          "costo_unit": 7916402,
+          "costo_unit": 7916402.0,
           "precio_unit": 9000000.0
         },
         {
           "categoria": "ESTRUCTURA",
           "item": "Portico elevado sonido de relevo de 3x3mts",
           "cantidad": 1,
-          "costo_unit": 879600,
+          "costo_unit": 879600.0,
           "precio_unit": 1000000.0
         },
         {
           "categoria": "ESTRUCTURA",
           "item": "Estructuras tipo boom de 4 mts para luces de feria",
           "cantidad": 12,
-          "costo_unit": 105552,
+          "costo_unit": 105552.0,
           "precio_unit": 120000.0
         },
         {
           "categoria": "AUDIOVISUALES",
           "item": "Pantalla led 3,9 Pitch de 4x3 mts y 4 lagrimas horizontales de 0,5x2mts para escenario principal",
           "cantidad": 1,
-          "costo_unit": 4222081,
+          "costo_unit": 4222081.0,
           "precio_unit": 4800000.0
         },
         {
           "categoria": "GENERADORES ELECTRICOS",
           "item": "Generador eléctrico 100kva",
           "cantidad": 1,
-          "costo_unit": 1495320,
+          "costo_unit": 1495320.0,
           "precio_unit": 1700000.0
         },
         {
           "categoria": "GENERADORES ELECTRICOS",
           "item": "Generador eléctrico 75kva",
           "cantidad": 1,
-          "costo_unit": 1407360,
+          "costo_unit": 1407360.0,
           "precio_unit": 1600000.0
         },
         {
           "categoria": "GENERADORES ELECTRICOS",
           "item": "20 Puntos Electricos para las carpas",
           "cantidad": 20,
-          "costo_unit": 87960,
+          "costo_unit": 87960.0,
           "precio_unit": 100000.0
         },
         {
           "categoria": "ADICIONALES",
           "item": "Carpas tipo hangar de 12 x 12 mts sin ambientar + Carpas 4x4 blancas para emprendimientos con punto de corriente cada carpa",
           "cantidad": 1,
-          "costo_unit": 6597002,
+          "costo_unit": 6597002.0,
           "precio_unit": 7500000.0
         },
         {
           "categoria": "ADICIONALES",
           "item": "Combo TV 50\" + PS5 + Base a piso",
           "cantidad": 6,
-          "costo_unit": 307860,
+          "costo_unit": 307860.0,
           "precio_unit": 350000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Inflabe castillo",
           "cantidad": 1,
-          "costo_unit": 483780,
+          "costo_unit": 483780.0,
           "precio_unit": 550000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Cañon de espuma grande",
           "cantidad": 1,
-          "costo_unit": 483780,
+          "costo_unit": 483780.0,
           "precio_unit": 550000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Inflable pequeño niños pequeños",
           "cantidad": 1,
-          "costo_unit": 263880,
+          "costo_unit": 263880.0,
           "precio_unit": 300000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Muro de escalar Niños 5-12 años",
           "cantidad": 1,
-          "costo_unit": 703680,
+          "costo_unit": 703680.0,
           "precio_unit": 800000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Inflable pista de obstaculos uso mixto alternando",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Transporte",
           "cantidad": 1,
-          "costo_unit": 263880,
+          "costo_unit": 263880.0,
           "precio_unit": 300000.0
         },
         {
-          "categoria": "Gasto Operativo y transporte de equipos",
+          "categoria": "GASTOS OPERATIVOS & TRANSPORTE",
           "item": "Gasto Operativo + Transporte de equipos",
           "cantidad": 1,
-          "costo_unit": 1759201,
+          "costo_unit": 1759201.0,
           "precio_unit": 2000000.0
         }
       ],
@@ -399,7 +399,7 @@
           "precio_unit": 350000.0
         },
         {
-          "categoria": "GASTO OPERATIVO Y TRANSPORTE DE EQUIPOS",
+          "categoria": "GASTOS OPERATIVOS & TRANSPORTE",
           "item": "Transporte de personal y equipos",
           "cantidad": 1,
           "costo_unit": 240000.0,
@@ -443,266 +443,266 @@
           "categoria": "SONIDO",
           "item": "Cabina line array DAS AERO 40 (6 por lado)",
           "cantidad": 12,
-          "costo_unit": 150000,
+          "costo_unit": 150000.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Subwoofer Dobles 2x18 DAS LX218",
           "cantidad": 6,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Monitor de piso DAS SM15",
           "cantidad": 4,
-          "costo_unit": 1250000,
+          "costo_unit": 1250000.0,
           "precio_unit": 150000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Side Fill DAS VANTEC",
           "cantidad": 2,
-          "costo_unit": 351840,
+          "costo_unit": 351840.0,
           "precio_unit": 400000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Cabina line array DAS AERO 40 para Relevo en estructura elevada",
           "cantidad": 4,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Bajos dobles 2x18 JBL SLX para Relevo",
           "cantidad": 4,
-          "costo_unit": 219900,
+          "costo_unit": 219900.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Consola midas M32",
           "cantidad": 1,
-          "costo_unit": 150000,
+          "costo_unit": 150000.0,
           "precio_unit": 250000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Microfono inalámbrico y/o countryman con receptor SHURE SLX y QLX\ncon combinador de antenas x 4 UND",
           "cantidad": 3,
-          "costo_unit": 70000,
+          "costo_unit": 70000.0,
           "precio_unit": 480000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Micrófonos alámbricos Shure SM 57 y 58",
           "cantidad": 20,
-          "costo_unit": 43980,
+          "costo_unit": 43980.0,
           "precio_unit": 50000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Amplificador de bajo Ampeg 4*10",
           "cantidad": 1,
-          "costo_unit": 100000,
+          "costo_unit": 100000.0,
           "precio_unit": 300000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Ingeniero de sonido",
           "cantidad": 1,
-          "costo_unit": 879600,
+          "costo_unit": 879600.0,
           "precio_unit": 1000000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Roadie",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "SONIDO",
           "item": "Dj Profesional + Controladora",
           "cantidad": 1,
-          "costo_unit": 1319400,
+          "costo_unit": 1319400.0,
           "precio_unit": 1500000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Par led RGBWUV 5 vatios",
           "cantidad": 50,
-          "costo_unit": 30786,
+          "costo_unit": 30786.0,
           "precio_unit": 35000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Opti led",
           "cantidad": 10,
-          "costo_unit": 43980,
+          "costo_unit": 43980.0,
           "precio_unit": 50000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Cabezas móviles BEAM WASH SPOT",
           "cantidad": 12,
-          "costo_unit": 175920,
+          "costo_unit": 175920.0,
           "precio_unit": 200000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Blinder para iluminación exterior en Truss para Iluminación de 2mts",
           "cantidad": 8,
-          "costo_unit": 193512,
+          "costo_unit": 193512.0,
           "precio_unit": 220000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Iluminación tipo feria 500mts",
           "cantidad": 500,
-          "costo_unit": 8796,
+          "costo_unit": 8796.0,
           "precio_unit": 10000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Consola de luces GRANDMA 2 CW + FADER WING",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Camara de humo Hazer PRO",
           "cantidad": 2,
-          "costo_unit": 131940,
+          "costo_unit": 131940.0,
           "precio_unit": 150000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Luminotécnico",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "ILUMINACIÓN",
           "item": "Auxiliar de iluminación",
           "cantidad": 1,
-          "costo_unit": 263880,
+          "costo_unit": 263880.0,
           "precio_unit": 300000.0
         },
         {
           "categoria": "ESTRUCTURA",
           "item": "Escenario principal GROUND SUPPORT DE 12,80 X 9,80 X 7 MTS con tarima americana de 9x8 mts + puente interno para anclaje de iluminación y pantallas, TARIMA DE 9,76 X 8,54 X 1,40 ALTURA + 2 Escaleras de acceso",
           "cantidad": 1,
-          "costo_unit": 7916402,
+          "costo_unit": 7916402.0,
           "precio_unit": 9000000.0
         },
         {
           "categoria": "ESTRUCTURA",
           "item": "Portico elevado sonido de relevo de 3x3mts",
           "cantidad": 1,
-          "costo_unit": 879600,
+          "costo_unit": 879600.0,
           "precio_unit": 1000000.0
         },
         {
           "categoria": "ESTRUCTURA",
           "item": "Estructuras tipo boom de 4 mts para luces de feria",
           "cantidad": 12,
-          "costo_unit": 105552,
+          "costo_unit": 105552.0,
           "precio_unit": 120000.0
         },
         {
           "categoria": "AUDIOVISUALES",
           "item": "Pantalla led 3,9 Pitch de 4x3 mts y 4 lagrimas horizontales de 0,5x2mts para escenario principal",
           "cantidad": 1,
-          "costo_unit": 4222081,
+          "costo_unit": 4222081.0,
           "precio_unit": 4800000.0
         },
         {
           "categoria": "GENERADORES ELECTRICOS",
           "item": "Generador eléctrico 100kva",
           "cantidad": 1,
-          "costo_unit": 1495320,
+          "costo_unit": 1495320.0,
           "precio_unit": 1700000.0
         },
         {
           "categoria": "GENERADORES ELECTRICOS",
           "item": "Generador eléctrico 75kva",
           "cantidad": 1,
-          "costo_unit": 1407360,
+          "costo_unit": 1407360.0,
           "precio_unit": 1600000.0
         },
         {
           "categoria": "GENERADORES ELECTRICOS",
           "item": "20 Puntos Electricos para las carpas",
           "cantidad": 20,
-          "costo_unit": 87960,
+          "costo_unit": 87960.0,
           "precio_unit": 100000.0
         },
         {
           "categoria": "ADICIONALES",
           "item": "Carpas tipo hangar de 12 x 12 mts sin ambientar + Carpas 4x4 blancas para emprendimientos con punto de corriente cada carpa",
           "cantidad": 1,
-          "costo_unit": 6597002,
+          "costo_unit": 6597002.0,
           "precio_unit": 7500000.0
         },
         {
           "categoria": "ADICIONALES",
           "item": "Combo TV 50\" + PS5 + Base a piso",
           "cantidad": 6,
-          "costo_unit": 307860,
+          "costo_unit": 307860.0,
           "precio_unit": 350000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Inflabe castillo",
           "cantidad": 1,
-          "costo_unit": 483780,
+          "costo_unit": 483780.0,
           "precio_unit": 550000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Cañon de espuma grande",
           "cantidad": 1,
-          "costo_unit": 483780,
+          "costo_unit": 483780.0,
           "precio_unit": 550000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Inflable pequeño niños pequeños",
           "cantidad": 1,
-          "costo_unit": 263880,
+          "costo_unit": 263880.0,
           "precio_unit": 300000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Muro de escalar Niños 5-12 años",
           "cantidad": 1,
-          "costo_unit": 703680,
+          "costo_unit": 703680.0,
           "precio_unit": 800000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Inflable pista de obstaculos uso mixto alternando",
           "cantidad": 1,
-          "costo_unit": 439800,
+          "costo_unit": 439800.0,
           "precio_unit": 500000.0
         },
         {
           "categoria": "ZONA INFANTIL",
           "item": "Transporte",
           "cantidad": 1,
-          "costo_unit": 263880,
+          "costo_unit": 263880.0,
           "precio_unit": 300000.0
         },
         {
-          "categoria": "Gasto Operativo y transporte de equipos",
+          "categoria": "GASTOS OPERATIVOS & TRANSPORTE",
           "item": "Gasto Operativo + Transporte de equipos",
           "cantidad": 1,
-          "costo_unit": 1759201,
+          "costo_unit": 1759201.0,
           "precio_unit": 2000000.0
         }
       ],

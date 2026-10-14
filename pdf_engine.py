@@ -25,8 +25,34 @@ def sanitize_and_compute_items(items):
     tot_costo = 0.0
 
     for idx, raw in enumerate(items, start=1):
-        cat = str(raw.get("categoria", "GENERAL")).strip().upper()
-        desc = str(raw.get("item", "Servicio")).strip()
+        cat_raw = str(raw.get("categoria", "OTROS")).strip()
+        cat_upper = cat_raw.upper()
+        if "ILUMIN" in cat_upper:
+            cat = "ILUMINACIÓN"
+        elif "SONID" in cat_upper:
+            cat = "SONIDO"
+        elif "ESTRUCT" in cat_upper:
+            cat = "ESTRUCTURA"
+        elif "AUDIO" in cat_upper:
+            cat = "AUDIOVISUALES"
+        elif "GENERAD" in cat_upper:
+            cat = "GENERADORES ELECTRICOS"
+        elif "ADICION" in cat_upper:
+            cat = "ADICIONALES"
+        elif "INFANT" in cat_upper:
+            cat = "ZONA INFANTIL"
+        elif "ALIMENT" in cat_upper or "BEBID" in cat_upper or "CATER" in cat_upper:
+            cat = "ALIMENTOS & BEBIDAS"
+        elif "GASTO" in cat_upper or "TRANSP" in cat_upper or "OPERAT" in cat_upper:
+            cat = "GASTOS OPERATIVOS & TRANSPORTE"
+        elif "PERSONAL" in cat_upper or "STAFF" in cat_upper or "TECNIC" in cat_upper:
+            cat = "PERSONAL & STAFF"
+        else:
+            cat = cat_raw if cat_raw else "OTROS"
+
+        desc = str(raw.get("item") or "").strip()
+        if not desc:
+            desc = "Servicio Cotizado"
         
         # Validación de cantidad
         try:
